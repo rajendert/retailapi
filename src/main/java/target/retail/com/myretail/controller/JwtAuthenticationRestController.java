@@ -28,7 +28,6 @@ import target.retail.com.myretail.jwtresources.TokenRequest;
 import target.retail.com.myretail.jwtresources.TokenResponse;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class JwtAuthenticationRestController {
 
 	@Value("${jwt.http.request.header}")

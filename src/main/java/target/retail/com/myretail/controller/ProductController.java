@@ -16,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import target.retail.com.myretail.delegate.RedskyServiceDelegate;
+import target.retail.com.myretail.exception.RetailAPIException;
 import target.retail.com.myretail.model.RetailProduct;
 import target.retail.com.myretail.model.RetrieveProductDetailsResponse;
 import target.retail.com.myretail.service.ProductService;
@@ -34,6 +39,17 @@ public class ProductController {
 
 	@GetMapping("/{productId}")
 	@Operation(description = "Retrieve product details")
+	/*
+	 * @ApiResponses({
+	 * 
+	 * @ApiResponse(responseCode = "200", description = "Retrieve", content
+	 * = @Content(schema = @Schema(implementation =
+	 * RetrieveProductDetailsResponse.class))),
+	 * 
+	 * @ApiResponse(responseCode = "500", description = "Internal Server Error",
+	 * content = @Content(schema = @Schema(implementation =
+	 * RetailAPIException.class))) })
+	 */
 	public ResponseEntity<RetrieveProductDetailsResponse> retrieveProducts(@PathVariable String productId,
 			HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.retrieveProducts(productId));
@@ -41,6 +57,17 @@ public class ProductController {
 
 	@PutMapping("/{productId}")
 	@Operation(description = "Update product price")
+	/*
+	 * @ApiResponses({
+	 * 
+	 * @ApiResponse(responseCode = "200", description = "Retrieve", content
+	 * = @Content(schema = @Schema(implementation =
+	 * RetrieveProductDetailsResponse.class))),
+	 * 
+	 * @ApiResponse(responseCode = "500", description = "Internal Server Error",
+	 * content = @Content(schema = @Schema(implementation =
+	 * RetailAPIException.class))) })
+	 */
 	public ResponseEntity<RetrieveProductDetailsResponse> updateProductPrice(@PathVariable String productId,
 			@Valid @RequestBody RetailProduct product, HttpServletRequest request) {
 		return ResponseEntity.status(HttpStatus.OK).body(productService.updateProductPrice(productId, product));

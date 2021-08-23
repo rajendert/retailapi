@@ -27,24 +27,6 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().description("Target Retail App").title("retailapi").version("v1").build();
-	}
-
-	/*
-	 * @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	 * //enabling swagger-ui part for visual documentation
-	 * registry.addResourceHandler("swagger-ui.html").addResourceLocations(
-	 * "classpath:/META-INF/resources/");
-	 * registry.addResourceHandler("/webjars/**").addResourceLocations(
-	 * "classpath:/META-INF/resources/webjars/"); }
-	 */
-
-	/*
-	 * private ApiInfo apiInfo() { return new ApiInfoBuilder()
-	 * .title("Spring Boot REST API") .description("\"Target Retail App\"")
-	 * .version("1.0.0") .license("Apache License Version 2.0")
-	 * .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"") //.contact(new
-	 * Contact("John Thompson", "http://springframework.guru/about/",
-	 * "john@springfrmework.guru")) .build(); }
-	 */
+	}	
 
 }

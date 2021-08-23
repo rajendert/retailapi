@@ -30,8 +30,9 @@ public class RetailAPIExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 
 	@ExceptionHandler({ AuthenticationException.class })
-	public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
-		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+	public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex) {
+		RetailAPIException errorDetails = new RetailAPIException(LocalDateTime.now(), ex.getMessage());
+		return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
 	}
 
 	@Override
@@ -45,18 +46,12 @@ public class RetailAPIExceptionHandler extends ResponseEntityExceptionHandler {
 			errors.put(fieldName, errorMessage);
 		});
 
-		/*
-		 * List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x
-		 * -> x.getDefaultMessage()) .collect(Collectors.toList());
-		 */
-
 		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Object> globleExcpetionHandler(Exception ex, WebRequest request) {
-		RetailAPIException errorDetails = new RetailAPIException(LocalDateTime.now(), ex.getMessage(),
-				request.getDescription(false));
+	public ResponseEntity<Object> globleExcpetionHandler(Exception ex) {
+		RetailAPIException errorDetails = new RetailAPIException(LocalDateTime.now(), ex.getMessage());
 		return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 

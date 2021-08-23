@@ -57,7 +57,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable().exceptionHandling()
 				.authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and().sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				/*.antMatchers(HttpMethod.GET,"/products/**")
+				.antMatchers(HttpMethod.PUT,"/products/**")	*/			
+				.anyRequest()
 				.authenticated();
 
 		httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
@@ -66,7 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity webSecurity) throws Exception {
-		webSecurity.ignoring().antMatchers(HttpMethod.POST, authenticationPath).antMatchers(HttpMethod.OPTIONS, "/**")
-				.and().ignoring().antMatchers(HttpMethod.GET, "/" );// Should not be in Production!
+		webSecurity.ignoring().antMatchers(HttpMethod.PUT, authenticationPath).antMatchers(HttpMethod.OPTIONS, "/**")
+				.and().ignoring().antMatchers(HttpMethod.GET, authenticationPath).antMatchers(HttpMethod.OPTIONS, "/**")
+				.and().ignoring().antMatchers("/swagger-ui/**");
 	}
 }
