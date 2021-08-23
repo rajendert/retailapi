@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "478ca000-065e-465e-90a8-4419f805098f",
+		"name": "Retail API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product-retrieve",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWplbmRlciIsImV4cCI6MTYzMDMzNDQ2OCwiaWF0IjoxNjI5NzI5NjY4fQ.qdcUKPtK54RqFrNphnFfuNAhRejjrUcxFxBWPsMTCLr8MR7TPS7Yqfc5qDAqGQTu9FDi38mvAhkXK8Q_VSnbeQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/target/v1/products/54456119",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"target",
+						"v1",
+						"products",
+						"54456119"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-updateprice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWplbmRlciIsImV4cCI6MTYzMDMzNDQ2OCwiaWF0IjoxNjI5NzI5NjY4fQ.qdcUKPtK54RqFrNphnFfuNAhRejjrUcxFxBWPsMTCLr8MR7TPS7Yqfc5qDAqGQTu9FDi38mvAhkXK8Q_VSnbeQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": 54456119,\r\n    \"name\": \"Creamy Peanut Butter 40oz - Good &#38; Gather&#8482;\",\r\n    \"current_price\": {\r\n        \"value\": 110.99,\r\n        \"currency_code\": \"USD\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/target/v1/products/54456119",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"target",
+						"v1",
+						"products",
+						"54456119"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticate-getToken",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"rajender\",\r\n    \"password\": \"pandu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/target/v1/authenticate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"target",
+						"v1",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autorization-refreshtoken",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyYWplbmRlciIsImV4cCI6MTYzMDI5MTU0NSwiaWF0IjoxNjI5Njg2NzQ1fQ.opdfUuDtQST8GBd5d941qNnQTyl99D2O3az0QAdwhBdHp3h77bCUIVGDoXEiJIBXIpW_FfF3vJV2m0nYW6XPkg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/target/v1/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"target",
+						"v1",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
